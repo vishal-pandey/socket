@@ -79,22 +79,23 @@ int main( int argc, char *argv[] ) {
 
 
 void doprocessing (int sock) {
-   int n;
-   char buffer[256];
-   bzero(buffer,256);
-   n = read(sock,buffer,255);
-   
-   if (n < 0) {
-      perror("ERROR reading from socket");
-      exit(1);
-   }
-   
-   printf("Here is the message: %s\n",buffer);
-   n = write(sock,"I got your message",18);
-   
-   if (n < 0) {
-      perror("ERROR writing to socket");
-      exit(1);
-   }
-	
+	while(1){
+		int n;
+		char buffer[256];
+		bzero(buffer,256);
+		n = read(sock,buffer,255);
+
+		if (n < 0) {
+		  perror("ERROR reading from socket");
+		  exit(1);
+		}
+
+		printf("Here is the message: %s\n",buffer);
+		n = write(sock,"I got your message",18);
+
+		if (n < 0) {
+		  perror("ERROR writing to socket");
+		  exit(1);
+		}
+	}
 }
