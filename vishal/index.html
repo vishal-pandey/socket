@@ -1,0 +1,21 @@
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  $(function () {
+    var socket = io();
+    $('form').submit(function(){
+    	var test = $('#m').val();
+      socket.emit('chat message', $('#m').val());
+      $('#m').val('');
+
+      alert(test);
+      return false;
+    });
+  });
+</script>
+<body>
+	<form>
+		<input type="text" name="data" id="m">
+		<input type="submit" name="submit">
+	</form>
+</body>
